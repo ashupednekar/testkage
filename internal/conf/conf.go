@@ -13,11 +13,9 @@ type Location struct {
 	Port2    int    `yaml:port2`
 }
 
-type Conf struct {
-	Conf []Location
-}
+type Conf map[string]Location
 
-func ReadConf(path string) ([]Location, error) {
+func ReadConf(path string) (map[string]Location, error) {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		fmt.Printf("error reading conf file: %v", err)
@@ -29,5 +27,5 @@ func ReadConf(path string) ([]Location, error) {
 		fmt.Printf("error unmarhalling conf: %v", err)
 		return nil, err
 	}
-	return config.Conf, nil
+	return config, nil
 }

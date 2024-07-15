@@ -22,8 +22,7 @@ func TestReadConfLength(t *testing.T) {
 
 func TestReadConfContent(t *testing.T) {
 	conf, _ := ReadConf("fixtures/sample.yaml")
-	loc := conf[0]
-	assert.Equal(t, loc.Location, "/one")
+	loc := conf["/one"]
 	assert.Equal(t, loc.Port1, 3001)
 	assert.Equal(t, loc.Port2, 3002)
 }

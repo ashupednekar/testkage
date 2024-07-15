@@ -1,8 +1,15 @@
 package main
 
-import "github.com/ashupednekar/testkage/cmd/server"
+import (
+	"log"
+
+	"github.com/ashupednekar/testkage/cmd/server"
+)
 
 func main() {
-	s := server.NewServer(":3000")
+	s, err := server.NewServer(":3000")
+	if err != nil {
+		log.Fatal(err)
+	}
 	s.Start()
 }
