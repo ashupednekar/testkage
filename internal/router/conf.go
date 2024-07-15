@@ -1,8 +1,8 @@
 package router
 
 import (
+	"fmt"
 	"io/ioutil"
-	"log"
 
 	"gopkg.in/yaml.v2"
 )
@@ -17,15 +17,17 @@ type Conf struct {
 	Conf []Location
 }
 
-func ReadConf(path string) []Location {
+func ReadConf(path string) ([]Location, error) {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
-		log.Fatalf("error reading conf file: %v", err)
+		fmt.Printf("error reading conf file: %v", err)
+		return nil, err
 	}
 	var config Conf
 	err = yaml.Unmarshal(data, &config)
 	if err != nil {
-		log.Fatalf("error unmarhalling conf: %v", err)
+		fmt.Printf("error unmarhalling conf: %v", err)
+		return nil, err
 	}
-	return config.Conf
+	return config.Conf, nil
 }

@@ -11,10 +11,10 @@ type Server struct {
 	router *mux.Router
 }
 
-func NewServer(addr string) Server {
+func NewServer(addr string) *Server {
 	return &Server{
-		addr: addr,
-    router: mux.NewRouter()
+		addr:   addr,
+		router: mux.NewRouter(),
 	}
 }
 
