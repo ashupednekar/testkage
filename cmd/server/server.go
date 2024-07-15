@@ -1,30 +1,33 @@
 package server
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
+	"github.com/ashupednekar/testkage/internal/conf"
 	"github.com/gorilla/mux"
 )
 
 type Server struct {
-	addr   string
+	Addr   string
 	Router *mux.Router
+	Conf   []conf.Location
 }
 
 func NewServer(addr string) *Server {
 	return &Server{
-		addr:   addr,
+		Addr:   addr,
 		Router: mux.NewRouter(),
 	}
 }
 
 func (s *Server) Start() error {
-	err := http.ListenAndServe(s.addr, s.Router)
+	log.Printf("Listening at %s", s.Addr)
+	s.BuildRoutes()
+	err := http.ListenAndServe(s.Addr, s.Router)
 	if err != nil {
 		log.Fatalf("could not start server")
 	}
-	fmt.Printf("Listening at :%s", s.addr)
+	log.Printf("Listening at :%s", s.Addr)
 	return nil
 }
