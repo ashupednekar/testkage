@@ -1,18 +1,23 @@
 package server
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
 
 type Server struct {
-	addr string
+	addr   string
+	router *mux.Router
 }
 
 func NewServer(addr string) Server {
-	return Server{
+	return &Server{
 		addr: addr,
+    router: mux.NewRouter()
 	}
 }
 
 func (s *Server) Start() error {
-	http.HandleFunc("/hey", s.Hey)
-	return http.ListenAndServe(s.addr, nil)
+	return http.ListenAndServe(s.addr, s.router)
 }
