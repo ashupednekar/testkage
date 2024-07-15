@@ -1,0 +1,10 @@
+conf:
+  - location: "/one"
+    port1: 3001
+    port2: 3002
+  - location: "/two"
+    port1: 3003
+    port2: 3004
+  - location: "/three"
+    port1: 3005
+    port2: 3006
