@@ -1,4 +1,4 @@
-package router
+package conf
 
 import (
 	"fmt"

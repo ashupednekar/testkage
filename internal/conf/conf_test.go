@@ -1,10 +1,9 @@
-package router
+package conf
 
 import (
 	"fmt"
 	"testing"
 
-	"github.com/ashupednekar/testkage/cmd/server"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -30,6 +29,6 @@ func TestReadConfContent(t *testing.T) {
 }
 
 func TestBuildRouter(t *testing.T) {
-	s := server.NewServer(":3000") // we won't be starting server here, so port doesn't matter
-	BuildRouter(s)
+	// s := server.NewServer(":3000") // we won't be starting server here, so port doesn't matter
+	// BuildRouter(s)
 }

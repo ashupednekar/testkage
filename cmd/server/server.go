@@ -1,6 +1,8 @@
 package server
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -8,16 +10,21 @@ import (
 
 type Server struct {
 	addr   string
-	router *mux.Router
+	Router *mux.Router
 }
 
 func NewServer(addr string) *Server {
 	return &Server{
 		addr:   addr,
-		router: mux.NewRouter(),
+		Router: mux.NewRouter(),
 	}
 }
 
 func (s *Server) Start() error {
-	return http.ListenAndServe(s.addr, s.router)
+	err := http.ListenAndServe(s.addr, s.Router)
+	if err != nil {
+		log.Fatalf("could not start server")
+	}
+	fmt.Printf("Listening at :%s", s.addr)
+	return nil
 }
