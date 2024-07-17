@@ -1,6 +1,6 @@
 "/one":
-    port1: 3001
-    port2: 3002
+    port1: 8080 
+    port2: 8081 
 "/two":
     port1: 3003
     port2: 3004
